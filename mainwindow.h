@@ -3,7 +3,11 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <watchdog.h>
+#include <setting.h>
+#include <QTimer>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -23,9 +27,20 @@ private slots:
 
     void on_pushButtonStart_clicked(bool checked);
 
+    void on_pushButtonSetting_clicked();
+
 private:
     Ui::MainWindow *ui;
     Watchdog *m_watchDog = nullptr;
+    Setting  *m_setting = nullptr;
+    SettingInfo settingInfo;
+    QTimer *m_autoStartTimer = nullptr;
+    void getSetting();
+private Q_SLOTS:
     void sltAppendLog(const QString& text);
+    void sltSettingUpdated();
+
+public Q_SLOTS:
+    void sltAutoStartTimer();
 };
 #endif // MAINWINDOW_H

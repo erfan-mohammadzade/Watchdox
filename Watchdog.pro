@@ -11,14 +11,18 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    setting.cpp \
     watchdog.cpp
 
 HEADERS += \
+    global_watchdox.h \
     mainwindow.h \
+    setting.h \
     watchdog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    setting.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
