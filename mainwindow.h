@@ -5,8 +5,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <watchdog.h>
-#include <setting.h>
+#include <Widgets/setting.h>
 #include <QTimer>
+#include <QCloseEvent>
+#include <Widgets/dialogenterpassword.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -42,5 +44,8 @@ private Q_SLOTS:
 
 public Q_SLOTS:
     void sltAutoStartTimer();
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 #endif // MAINWINDOW_H

@@ -98,6 +98,18 @@ void MainWindow::sltAutoStartTimer()
     ui->pushButtonStart->setText("Stop");
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    DialogEnterPassword password;
+    if(password.exec()==QDialog::Accepted)
+    {
+        if(!password.getUserValidated())
+            event->ignore();
+    }
+    else
+        event->ignore();
+}
+
 void MainWindow::getSetting()
 {
     settingInfo = m_setting->settingInfo();

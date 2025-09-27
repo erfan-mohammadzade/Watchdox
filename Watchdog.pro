@@ -9,20 +9,23 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Widgets/dialogenterpassword.cpp \
     main.cpp \
     mainwindow.cpp \
-    setting.cpp \
+    Widgets/setting.cpp \
     watchdog.cpp
 
 HEADERS += \
+    Widgets/dialogenterpassword.h \
     global_watchdox.h \
     mainwindow.h \
-    setting.h \
+    Widgets/setting.h \
     watchdog.h
 
 FORMS += \
+    Widgets/dialogenterpassword.ui \
     mainwindow.ui \
-    setting.ui
+    Widgets/setting.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
