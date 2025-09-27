@@ -1,5 +1,7 @@
 #include <watchdog.h>
 
+#include <QFileInfo>
+
 Watchdog::Watchdog(const QString &programPath, QObject *parent)
     : QObject(parent), program(programPath) {
     startProgram();
@@ -25,11 +27,28 @@ void Watchdog::onFinished(int exitCode, QProcess::ExitStatus exitStatus) {
 }
 
 void Watchdog::startProgram() {
+    if (!QFile::exists(program)) {
+        Q_EMIT sidSendLog("Program path invalid: " + program);
+        return;
+    }
+
     if (process) {
         process->deleteLater();
     }
+
     process = new QProcess(this);
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             this, &Watchdog::onFinished);
+
+    connect(process, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
+        Q_EMIT sidSendLog("QProcess error: " + QString::number(error));
+    });
+
+    process->setWorkingDirectory(QFileInfo(program).absolutePath());
+    Q_EMIT sidSendLog("Starting program: " + program);
     process->start(program);
+
+    if (!process->waitForStarted()) {
+        Q_EMIT sidSendLog("Failed to start process. Error: " + process->errorString());
+    }
 }

@@ -2,6 +2,7 @@
 #include <QProcess>
 #include <QTimer>
 #include <QDebug>
+#include <QFile>
 
 class Watchdog : public QObject {
     Q_OBJECT

@@ -37,6 +37,7 @@ void MainWindow::on_pushButtonSelectExe_clicked()
                                                     "Select EXE File of your app",
                                                     QDir::homePath(),                   // default directory
                                                     "Executable Files (*.exe)");
+    filePath = QDir::toNativeSeparators(filePath);
     if(filePath.isEmpty())
         return;
     else
