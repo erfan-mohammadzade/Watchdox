@@ -57,37 +57,41 @@
    <item row="0" column="0" colspan="4">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,0,1,1,1">
-       <item row="0" column="4">
-        <widget class="QPushButton" name="pushButtonSetDefaultPath">
+       <item row="3" column="0" colspan="5">
+        <widget class="QCheckBox" name="checkBoxCloseOtherApp">
          <property name="text">
-          <string>Set</string>
+          <string>Close Other Application when my app start</string>
          </property>
         </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Default Path</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2" colspan="2">
-        <widget class="QLineEdit" name="lineEditDefaultPath"/>
-       </item>
-       <item row="1" column="2" colspan="2">
-        <widget class="QSpinBox" name="spinBoxSetTimer"/>
        </item>
        <item row="1" column="0">
         <widget class="QCheckBox" name="checkBoxAutoStart">
          <property name="text">
           <string>Auto Start</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QSpinBox" name="spinBoxSetTimer"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Secs</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="pushButtonSetDefaultPath">
+         <property name="text">
+          <string>Set</string>
          </property>
         </widget>
        </item>
@@ -98,6 +102,13 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Default Path</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="label_6">
          <property name="text">
@@ -105,14 +116,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Secs</string>
-         </property>
-        </widget>
+       <item row="0" column="2" colspan="2">
+        <widget class="QLineEdit" name="lineEditDefaultPath"/>
        </item>
-       <item row="2" column="0" colspan="5">
+       <item row="4" column="0" colspan="5">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -124,6 +131,16 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="2" column="0" colspan="5">
+        <widget class="QCheckBox" name="checkBoxNormalExitRestartProgram">
+         <property name="text">
+          <string>Normal exit restart program</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

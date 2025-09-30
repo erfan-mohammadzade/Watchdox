@@ -65,9 +65,12 @@ void MainWindow::on_pushButtonStart_clicked(bool checked)
         ui->pushButtonStart->setText("Stop");
 
         // Prevent multiple watchdogs
-        if (!m_watchDog) {
+        if (!m_watchDog)
+        {
             m_watchDog = new Watchdog(filePath, this); // Set parent to avoid leaks
             connect(m_watchDog, &Watchdog::sidSendLog, this, &MainWindow::sltAppendLog);
+            m_watchDog->setSettingInfo(m_settingInfo);
+            m_watchDog->startProgram();
             ui->textEdit->append("Proceess started");
         }
     } else {
@@ -113,8 +116,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::getSetting()
 {
-    settingInfo = m_setting->settingInfo();
-    ui->lineEditPath->setText(settingInfo.exePath);
+    m_settingInfo = m_setting->settingInfo();
+    ui->lineEditPath->setText(m_settingInfo.exePath);
 }
 
 void MainWindow::on_pushButtonSetting_clicked()

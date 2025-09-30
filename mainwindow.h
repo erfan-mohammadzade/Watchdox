@@ -35,7 +35,7 @@ private:
     Ui::MainWindow *ui;
     Watchdog *m_watchDog = nullptr;
     Setting  *m_setting = nullptr;
-    SettingInfo settingInfo;
+    SettingInfo m_settingInfo;
     QTimer *m_autoStartTimer = nullptr;
     void getSetting();
 private Q_SLOTS:

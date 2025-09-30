@@ -26,6 +26,8 @@ void Setting::on_pushButtonOk_clicked()
     m_settingInfo.exePath = ui->lineEditDefaultPath->text();
     m_settingInfo.hasAutoStartEnabled = ui->checkBoxAutoStart->isChecked();
     m_settingInfo.autoStartTimer = ui->spinBoxSetTimer->value()*1000;
+    m_settingInfo.hasCloseOtherAppRequested = ui->checkBoxCloseOtherApp->isChecked();
+    m_settingInfo.hasNormalExitOpenRequested = ui->checkBoxNormalExitRestartProgram->isChecked();
     saveSetting();
     Q_EMIT sigSettingUpdated();
     close();
@@ -68,8 +70,9 @@ void Setting::loadSettingToUI()
     ui->lineEditDefaultPath->setText(m_settingInfo.exePath);
     ui->spinBoxSetTimer->setValue(m_settingInfo.autoStartTimer/1000);
     ui->checkBoxAutoStart->setChecked(m_settingInfo.hasAutoStartEnabled);
+    ui->checkBoxCloseOtherApp->setChecked(m_settingInfo.hasCloseOtherAppRequested);
+    ui->checkBoxNormalExitRestartProgram->setChecked(m_settingInfo.hasNormalExitOpenRequested);
 }
-
 
 void Setting::on_pushButtonSetDefaultPath_clicked()
 {
