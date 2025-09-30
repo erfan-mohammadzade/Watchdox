@@ -24,7 +24,7 @@ void Watchdog::setSettingInfo(const SettingInfo &newSettingInfo) {
 void Watchdog::onFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Q_EMIT sidSendLog("Program finished with code " + QString::number(exitCode));
 
-    if (exitStatus == QProcess::NormalExit && m_settingInfo.hasNormalExitOpenRequested)
+    if (exitStatus == QProcess::NormalExit && !m_settingInfo.hasNormalExitOpenRequested)
     {
         Q_EMIT sidSendLog("Program exited normally. Not restarting.");
     }
