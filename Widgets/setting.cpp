@@ -92,3 +92,9 @@ void Setting::on_pushButtonSetDefaultPath_clicked()
 
 
 
+
+void Setting::on_pushButtonGitView_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/erfan-mohammadzade"));
+}
+

@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QDataStream>
 #include <global_watchdox.h>
+#include <QDesktopServices>
+#include <QUrl>
 
 namespace Ui {
 class Setting;
@@ -27,6 +29,8 @@ private slots:
     void on_pushButtonCancel_clicked();
 
     void on_pushButtonSetDefaultPath_clicked();
+
+    void on_pushButtonGitView_clicked();
 
 private:
     Ui::Setting *ui;

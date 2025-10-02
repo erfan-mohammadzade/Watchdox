@@ -67,7 +67,7 @@ void MainWindow::on_pushButtonStart_clicked(bool checked)
         // Prevent multiple watchdogs
         if (!m_watchDog)
         {
-            m_watchDog = new Watchdog(filePath, this); // Set parent to avoid leaks
+            m_watchDog = new Watchdog(filePath, this);
             connect(m_watchDog, &Watchdog::sidSendLog, this, &MainWindow::sltAppendLog);
             m_watchDog->setSettingInfo(m_settingInfo);
             m_watchDog->startProgram();
@@ -117,6 +117,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::getSetting()
 {
     m_settingInfo = m_setting->settingInfo();
+    if(m_watchDog) m_watchDog->setSettingInfo(m_settingInfo);
     ui->lineEditPath->setText(m_settingInfo.exePath);
 }
 
