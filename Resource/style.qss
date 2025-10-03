@@ -80,7 +80,6 @@ QLineEdit, QPlainTextEdit, QTextEdit, QSpinBox, QDoubleSpinBox {
 }
 QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QSpinBox:focus {
     border: 1px solid #f5c000;
-    box-shadow: none;
 }
 
 /* ComboBox */

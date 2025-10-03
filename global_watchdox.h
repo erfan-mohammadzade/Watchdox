@@ -3,6 +3,7 @@
 #include <QString>
 #include <QFile>
 #include <QDataStream>
+#define APPVERSION "1.0.1"
 struct SettingInfo
 {
     QString exePath;
@@ -10,6 +11,7 @@ struct SettingInfo
     int autoStartTimer = 2000;
     bool hasCloseOtherAppRequested = false;
     bool hasNormalExitOpenRequested = true;
+    bool hasGetClosePasswordRequested = true;
 
     void clear()
     {
@@ -18,29 +20,12 @@ struct SettingInfo
         hasAutoStartEnabled = false;
         hasCloseOtherAppRequested = false;
         hasNormalExitOpenRequested = true;
+        hasGetClosePasswordRequested = true;
     }
 
     bool hasAutoStartTimerValid()
     {
         return hasAutoStartEnabled && !exePath.isEmpty() && QFile(exePath).exists();
-    }
-
-    friend QDataStream &operator<<(QDataStream &out, const SettingInfo &myStruct) {
-        out << myStruct.exePath
-            << myStruct.hasAutoStartEnabled
-            << myStruct.autoStartTimer
-            << myStruct.hasCloseOtherAppRequested
-            << myStruct.hasNormalExitOpenRequested;
-        return out;
-    }
-
-    friend QDataStream &operator>>(QDataStream &in, SettingInfo &myStruct) {
-        in >> myStruct.exePath>>
-            myStruct.hasAutoStartEnabled >>
-            myStruct.autoStartTimer >>
-            myStruct.hasCloseOtherAppRequested >>
-            myStruct.hasNormalExitOpenRequested;
-        return in;
     }
 };
 

@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QCloseEvent>
 #include <Widgets/dialogenterpassword.h>
+#include <Widgets/authentication.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,7 +26,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButtonSelectExe_clicked();
 
     void on_pushButtonStart_clicked(bool checked);
 
@@ -34,13 +34,15 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Watchdog *m_watchDog = nullptr;
+    Authentication *m_authentication = nullptr;
     Setting  *m_setting = nullptr;
     SettingInfo m_settingInfo;
     QTimer *m_autoStartTimer = nullptr;
-    void getSetting();
+
 private Q_SLOTS:
     void sltAppendLog(const QString& text);
     void sltSettingUpdated();
+    void sltOpenAuth();
 
 public Q_SLOTS:
     void sltAutoStartTimer();

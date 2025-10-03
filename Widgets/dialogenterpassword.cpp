@@ -16,32 +16,14 @@ DialogEnterPassword::~DialogEnterPassword()
 
 void DialogEnterPassword::on_buttonBox_accepted()
 {
-    QString entered = ui->lineEditPassword->text();
-
-    if (validatePassword(entered)) {
-        m_userValidated = true;
-        accept();
-    } else {
-        m_userValidated = false;
-        QMessageBox::warning(this, tr("Wrong password"), tr("The password you entered is incorrect."));
-    }
+    m_password = ui->lineEditPassword->text();
 }
 
-bool DialogEnterPassword::validatePassword(const QString &password)
+QString DialogEnterPassword::password() const
 {
-    // Example: compare SHA256(password) with stored hash.
-    // NOTE: Replace storedHashHex with your stored hash (hex string).
-    // For demo we compute the hash of "secretpass" and compare:
-    const QByteArray storedHashHex = QCryptographicHash::hash(
-                                         QByteArrayLiteral("1234"), QCryptographicHash::Sha256).toHex();
-
-    QByteArray enteredHashHex = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
-
-    return (enteredHashHex == storedHashHex);
+    return m_password;
 }
 
-bool DialogEnterPassword::getUserValidated() const
-{
-    return m_userValidated;
-}
+
+
 

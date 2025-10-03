@@ -31,7 +31,7 @@
    <item row="1" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -44,7 +44,7 @@
    <item row="1" column="3">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -57,34 +57,47 @@
    <item row="0" column="0" colspan="4">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,0,1,1,1">
+       <item row="5" column="0" colspan="5">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="3" column="0" colspan="5">
-        <widget class="QCheckBox" name="checkBoxCloseOtherApp">
+        <widget class="QCheckBox" name="checkBoxNormalExitRestartProgram">
          <property name="text">
-          <string>Close Other Application when my app start</string>
+          <string>Normal exit restart program</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="checkBoxAutoStart">
-         <property name="text">
-          <string>Auto Start</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" colspan="2">
-        <widget class="QSpinBox" name="spinBoxSetTimer"/>
        </item>
        <item row="1" column="4">
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>Secs</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>:</string>
          </property>
         </widget>
        </item>
@@ -95,12 +108,18 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label_5">
+       <item row="4" column="0" colspan="5">
+        <widget class="QCheckBox" name="checkBoxCloseOtherApp">
          <property name="text">
-          <string>:</string>
+          <string>Close Other Application when my app start</string>
          </property>
         </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QSpinBox" name="spinBoxSetTimer"/>
+       </item>
+       <item row="0" column="2" colspan="2">
+        <widget class="QLineEdit" name="lineEditDefaultPath"/>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_4">
@@ -116,26 +135,17 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2" colspan="2">
-        <widget class="QLineEdit" name="lineEditDefaultPath"/>
-       </item>
-       <item row="4" column="0" colspan="5">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBoxAutoStart">
+         <property name="text">
+          <string>Auto Start</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
        <item row="2" column="0" colspan="5">
-        <widget class="QCheckBox" name="checkBoxNormalExitRestartProgram">
+        <widget class="QCheckBox" name="checkBoxGetPasswordByClosing">
          <property name="text">
-          <string>Normal exit restart program</string>
+          <string>Get Password by Closing</string>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -150,62 +160,50 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="3" column="2">
-          <widget class="QLineEdit" name="lineEdit_2"/>
-         </item>
-         <item row="0" column="0" colspan="4">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Re-Password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLineEdit" name="lineEdit"/>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="lineEdit_3"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>last Password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QPushButton" name="pushButtonSetPassword">
-           <property name="text">
-            <string>Set</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Change or Enter Password</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelPasswordHint">
+            <property name="text">
+             <string>Change Or Enter Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonChangeOrEnterPassword">
+            <property name="text">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </item>
        <item row="1" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>147</height>
+           <height>40</height>
           </size>
          </property>
         </spacer>
@@ -220,7 +218,7 @@
        <item row="0" column="1">
         <spacer name="verticalSpacer_4">
          <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -233,7 +231,7 @@
        <item row="1" column="0">
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -253,13 +251,13 @@
             </font>
            </property>
            <property name="layoutDirection">
-            <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="text">
             <string>Version</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -278,38 +276,38 @@
             </font>
            </property>
            <property name="layoutDirection">
-            <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="text">
             <string>Wathdox</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="labelAppVersion">
            <property name="font">
             <font>
              <pointsize>12</pointsize>
             </font>
            </property>
            <property name="layoutDirection">
-            <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <enum>Qt::LeftToRight</enum>
            </property>
            <property name="text">
-            <string>1.0.0</string>
+            <string>-</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item row="3" column="0">
           <spacer name="verticalSpacer_5">
            <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
+            <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -324,7 +322,7 @@
        <item row="1" column="2">
         <spacer name="horizontalSpacer_4">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -337,7 +335,7 @@
        <item row="2" column="1">
         <spacer name="verticalSpacer_3">
          <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

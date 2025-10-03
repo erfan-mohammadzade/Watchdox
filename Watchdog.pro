@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Widgets/authentication.cpp \
     Widgets/dialogenterpassword.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     watchdog.cpp
 
 HEADERS += \
+    Widgets/authentication.h \
     Widgets/dialogenterpassword.h \
     global_watchdox.h \
     mainwindow.h \
@@ -23,6 +25,7 @@ HEADERS += \
     watchdog.h
 
 FORMS += \
+    Widgets/authentication.ui \
     Widgets/dialogenterpassword.ui \
     mainwindow.ui \
     Widgets/setting.ui

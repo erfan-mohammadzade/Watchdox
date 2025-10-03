@@ -15,8 +15,7 @@ class DialogEnterPassword : public QDialog
 public:
     explicit DialogEnterPassword(QWidget *parent = nullptr);
     ~DialogEnterPassword();
-
-    bool getUserValidated() const;
+    QString password() const;
 
 private slots:
     void on_buttonBox_accepted();
@@ -24,8 +23,7 @@ private slots:
 private:
     Ui::DialogEnterPassword *ui;
     bool m_userValidated = false;
-
-    bool validatePassword(const QString &password);
+    QString m_password;
 
 };
 

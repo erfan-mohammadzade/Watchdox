@@ -7,6 +7,7 @@
 #include <global_watchdox.h>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QSettings>
 
 namespace Ui {
 class Setting;
@@ -32,14 +33,18 @@ private slots:
 
     void on_pushButtonGitView_clicked();
 
+    void on_pushButtonChangeOrEnterPassword_clicked();
+
 private:
     Ui::Setting *ui;
     SettingInfo m_settingInfo;
+    QSettings *m_setting;
     void saveSetting();
     void loadSetting();
-    void loadSettingToUI();
 Q_SIGNALS:
     void sigSettingUpdated();
+    void sigOpenAuth();
+
 };
 
 #endif // SETTING_H

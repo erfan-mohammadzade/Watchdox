@@ -7,7 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     m_setting = new Setting();
+    m_authentication = new Authentication();
     connect(m_setting, &Setting::sigSettingUpdated, this, &MainWindow::sltSettingUpdated);
+    connect(m_setting, &Setting::sigOpenAuth, this, &MainWindow::sltOpenAuth);
 
     m_autoStartTimer = new QTimer(this);
     m_autoStartTimer->setSingleShot(true);
@@ -27,21 +29,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
     m_setting->deleteLater();
+    m_authentication->deleteLater();
     m_autoStartTimer->stop();
     m_autoStartTimer->deleteLater();
-}
-
-void MainWindow::on_pushButtonSelectExe_clicked()
-{
-    QString filePath = QFileDialog::getOpenFileName(nullptr,
-                                                    "Select EXE File of your app",
-                                                    QDir::homePath(),                   // default directory
-                                                    "Executable Files (*.exe)");
-    filePath = QDir::toNativeSeparators(filePath);
-    if(filePath.isEmpty())
-        return;
-    else
-        ui->lineEditPath->setText(filePath);
 }
 
 void MainWindow::on_pushButtonStart_clicked(bool checked)
@@ -92,7 +82,16 @@ void MainWindow::sltAppendLog(const QString &text)
 
 void MainWindow::sltSettingUpdated()
 {
-    getSetting();
+    m_settingInfo = m_setting->settingInfo();
+    if(m_watchDog) m_watchDog->setSettingInfo(m_settingInfo);
+    ui->lineEditPath->setText(m_settingInfo.exePath);
+    ui->textEdit->append("Setting updated");
+    ui->lineEditPath->setText(m_settingInfo.exePath);
+}
+
+void MainWindow::sltOpenAuth()
+{
+    m_authentication->show();
 }
 
 void MainWindow::sltAutoStartTimer()
@@ -104,25 +103,29 @@ void MainWindow::sltAutoStartTimer()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    DialogEnterPassword password;
-    if(password.exec()==QDialog::Accepted)
+    if(m_settingInfo.hasGetClosePasswordRequested)
     {
-        if(!password.getUserValidated())
+        DialogEnterPassword password;
+        if(password.exec()==QDialog::Accepted)
+        {
+            if(!m_authentication->verifyPassword(password.password()))
+                event->ignore();
+        }
+        else
             event->ignore();
     }
-    else
-        event->ignore();
 }
 
-void MainWindow::getSetting()
-{
-    m_settingInfo = m_setting->settingInfo();
-    if(m_watchDog) m_watchDog->setSettingInfo(m_settingInfo);
-    ui->lineEditPath->setText(m_settingInfo.exePath);
-}
+
 
 void MainWindow::on_pushButtonSetting_clicked()
 {
-    m_setting->showSetting();
+    DialogEnterPassword password;
+    if(password.exec()==QDialog::Accepted)
+    {
+        if(m_authentication->verifyPassword(password.password()))
+            m_setting->showSetting();
+    }
 }
+
 
