@@ -37,3 +37,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resource.qrc
+
+win32:RC_FILE += Watchdog.rc
+
